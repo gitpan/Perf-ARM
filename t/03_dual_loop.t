@@ -4,19 +4,12 @@
 #  This program is free software; you can redistribute it
 #  and/or modify it under the same terms as Perl itself.
 #
-#$Header: 03_dual_loop.t,v 1.4 2000/11/01 17:11:09 bbacker Exp $
+#  $Author: bbacker $
+#  $Date: 2001/09/19 18:43:24 $
+#  $Revision: 1.2 $
 #
-#Arguments:
-#Environment:
-#
-#What:
-#
-#
-#How:
-#
-#
-#---------------------------------------------------------------------------
 # interleaved starts and stops
+#---------------------------------------------------------------------------
 
     use strict;
 
@@ -38,42 +31,42 @@ $i=0;
     $app_id=Perf::ARM::arm_init( "$0", "*", 0,0,0);
     if ($app_id <=0) {
     ok(0);
-        die "arm_init() failed [$app_id]: do you have a real " .
-            "libarm installed, or just a NOP version? \n";
+	die "arm_init() failed [$app_id]: do you have a real " .
+	    "libarm installed, or just a NOP version? \n";
     }
 
     ($ti1=Perf::ARM::arm_getid($app_id, "simple_tran1",
-        "detail1_$$", 0,0,0) > 0) || die "arm_getid() failed with $ti1";
+	"detail1_$$", 0,0,0) > 0) || die "arm_getid() failed with $ti1";
 
     ($ti2=Perf::ARM::arm_getid($app_id, "simple_tran2",
-        "detail2_$$", 0,0,0) > 0) || die "arm_getid() failed with $ti2";
+	"detail2_$$", 0,0,0) > 0) || die "arm_getid() failed with $ti2";
 
     for ($i=0;$i<$limit;$i++) {
-        $th1=Perf::ARM::arm_start($ti1, 0,0,0);
-        printf "%3.3d: ",$i;
-        print "arm_start() trans 1 app_id: $app_id th: $th1 \n";
+	$th1=Perf::ARM::arm_start($ti1, 0,0,0);
+	printf "%3.3d: ",$i;
+	print "arm_start() trans 1 app_id: $app_id th: $th1 \n";
 
-        $th2=Perf::ARM::arm_start($ti2, 0,0,0);
-        printf "%3.3d: ",$i;
-        print "arm_start() trans 2 app_id: $app_id th: $th2 \n";
+	$th2=Perf::ARM::arm_start($ti2, 0,0,0);
+	printf "%3.3d: ",$i;
+	print "arm_start() trans 2 app_id: $app_id th: $th2 \n";
 
-        ok(0) if ( (! $th1) || (! $th2));
+	ok(0) if ( (! $th1) || (! $th2));
 
-        sleep 1;
+	sleep 1;
 
-        $rc=Perf::ARM::arm_stop($th1, 0, 0,0,0);
-        printf "%3.3d: ",$i;
-        print "arm_stop()  trans 1 app_id: $app_id th: $th1 rc=$rc\n";
+	$rc=Perf::ARM::arm_stop($th1, 0, 0,0,0);
+	printf "%3.3d: ",$i;
+	print "arm_stop()  trans 1 app_id: $app_id th: $th1 rc=$rc\n";
 
-        ok(0) if ($rc);
+	ok(0) if ($rc);
 
-        sleep 1;
+	sleep 1;
 
-        $rc=Perf::ARM::arm_stop($th2, 0, 0,0,0);
-        printf "%3.3d: ",$i;
-        print "arm_stop()  trans 2 app_id: $app_id th: $th2 rc=$rc\n";
+	$rc=Perf::ARM::arm_stop($th2, 0, 0,0,0);
+	printf "%3.3d: ",$i;
+	print "arm_stop()  trans 2 app_id: $app_id th: $th2 rc=$rc\n";
 
-        ok(0) if ($rc);
+	ok(0) if ($rc);
     }
 
     $rc=Perf::ARM::arm_end($app_id, 0,0,0);

@@ -10,8 +10,8 @@ extern "C" {
 
 #include <arm.h>
 
-/* 
- * NOTE: the ARM.xs file is currently just directed at HPUX 11.0 
+/*
+ * NOTE: the ARM.xs file is currently just directed at HPUX 11.0
  * installations and has only been testing on that OS
  */
 
@@ -92,7 +92,7 @@ not_there:
 }
 
 
-MODULE = Perf::ARM		PACKAGE = Perf::ARM		
+MODULE = Perf::ARM		PACKAGE = Perf::ARM
 
 double
 constant(name,arg)

@@ -1,4 +1,4 @@
-#  Copyright (c) 1999 Hewlett-Packard Company. All rights reserved.
+#  Copyright (c) 2001 Hewlett-Packard Company. All rights reserved.
 #  This program is free software; you can redistribute it
 #  and/or modify it under the same terms as Perl itself.
 
@@ -22,7 +22,7 @@ require AutoLoader;
 # Do not simply export all your public functions/methods/constants.
 @EXPORT = qw(
 );
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -140,6 +140,28 @@ arm_end(long ,long ,char *,long );
 =head1 AUTHOR
 
 bryan_backer@hp.com
+
+=head1 BUGS, LIMITATIONS
+
+The module's tests do not currently pass if the system has the
+no-operation (NULL) shared libraries, as they return zero for
+all calls.
+
+On some HP-UX builds of perl with the
+usemymalloc build flag set to 'y', Perf::ARM dumps core.
+The cause of this problem is not fully understood. If the
+problem occurs, rebuild the perl with usemymalloc='n'.
+Running perl -V will show the usemymalloc setting for your perl.
+
+=head1 TO DO
+
+    - create a useful subset of tests that work with the null libarm
+      from the ARM SDK, allowing 'make test' to pass on those systems.
+    - integrate David Carter's Inline suggestions
+    - integrate David Carter's function name and null parameter
+      shortening suggestions
+    - build an object interface similar to the ARM 3.0 Java interface
+      described at http://regions.cmg.org/regions/cmgarmw/ARM30.html
 
 =head1 SEE ALSO
 

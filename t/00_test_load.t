@@ -4,16 +4,9 @@
 #  This program is free software; you can redistribute it
 #  and/or modify it under the same terms as Perl itself.
 #
-# $Header: 00_test_load.t,v 1.4 2000/11/01 17:10:39 bbacker Exp $
-#
-#Arguments:
-#Environment:
-#
-#What:
-#    make sure we can find the module
-#
-#How:
-#
+#  $Author: bbacker $
+#  $Date: 2001/09/19 18:43:23 $
+#  $Revision: 1.2 $
 #
 #---------------------------------------------------------------------------
 
